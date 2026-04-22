@@ -5,30 +5,26 @@ export default function App() {
   const [message, setMessage] = useState('Cargando...');
 
   useEffect(() => {
-    // Cambia esta IP por la de TU computadora
-    fetch('http://192.168.1.35:3000')  // 👈 Usa TU IP, no localhost
+    // 🔴 CAMBIA ESTA IP por la IP real de tu computadora
+    // (ejecuta 'ipconfig' en Windows y busca "IPv4")
+    const MI_IP = '192.168.1.35'; // <--- Pon aquí tu IP
+    fetch(`http://${MI_IP}:3000`)
       .then(response => response.json())
-      .then(data => {
-        console.log('Respuesta:', data);
-        setMessage(data.message);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        setMessage('Error: ' + error.message);
-      });
+      .then(data => setMessage(data.message))
+      .catch(error => setMessage('Error: ' + error.message));
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 24 }}>{message}</Text>
+      <View style={styles.center}>
+        <Text style={styles.text}>{message}</Text>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  text: { fontSize: 24 },
 });
