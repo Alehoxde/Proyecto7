@@ -5,9 +5,8 @@ export default function App() {
   const [message, setMessage] = useState('Cargando...');
 
   useEffect(() => {
-    // 🔴 CAMBIA ESTA IP por la IP real de tu computadora
-    // (ejecuta 'ipconfig' en Windows y busca "IPv4")
-    const MI_IP = '192.168.1.35'; // <--- Pon aquí tu IP
+    // Para emulador Android, usa 10.0.2.2 (localhost del host)
+    const MI_IP = '10.0.2.2';  // <-- Esto es para que el emulador acceda a tu computadora
     fetch(`http://${MI_IP}:3000`)
       .then(response => response.json())
       .then(data => setMessage(data.message))
