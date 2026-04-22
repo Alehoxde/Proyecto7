@@ -1,21 +1,27 @@
-// mobile/App.js
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 
 export default function App() {
   const [message, setMessage] = useState('Cargando...');
 
   useEffect(() => {
-    fetch('http://localhost:3000')
+    // Cambia esta IP por la de TU computadora
+    fetch('http://192.168.1.35:3000')  // 👈 Usa TU IP, no localhost
       .then(response => response.json())
-      .then(data => setMessage(data.message))
-      .catch(error => setMessage('Error al conectar: ' + error.message));
+      .then(data => {
+        console.log('Respuesta:', data);
+        setMessage(data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setMessage('Error: ' + error.message);
+      });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>{message}</Text>
+        <Text style={{ fontSize: 24 }}>{message}</Text>
       </View>
     </SafeAreaView>
   );
