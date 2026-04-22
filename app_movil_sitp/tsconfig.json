@@ -1,4 +1,14 @@
-{
-  "compilerOptions": {},
+﻿{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
   "extends": "expo/tsconfig.base"
 }
