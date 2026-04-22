@@ -5,12 +5,10 @@ export default function App() {
   const [message, setMessage] = useState('Cargando...');
 
   useEffect(() => {
-    // Para emulador Android, usa 10.0.2.2 (localhost del host)
-    const MI_IP = '10.0.2.2';  // <-- Esto es para que el emulador acceda a tu computadora
-    fetch(`http://${MI_IP}:3000`)
-      .then(response => response.json())
+   fetch('http://192.168.1.87:3000')  // Reemplaza con tu IP real  // Para emulador Android
+      .then(res => res.json())
       .then(data => setMessage(data.message))
-      .catch(error => setMessage('Error: ' + error.message));
+      .catch(err => setMessage('Error: ' + err.message));
   }, []);
 
   return (
